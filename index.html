@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correria - Controle seus gastos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <img src="logo.png" alt="Logo">
+            <h1>Correria</h1>
+            <p>Controle financeiro para motoboys</p>
+            <nav>
+                <a href="#resumo">Resumo</a>
+                <a href="#registro">Registro diário</a>
+                <a href="#custos">Custos da moto</a>
+                <a href="#metas">Metas e reservas</a>
+        </aside>
+
+        <main class="conteudo">
+            <section id="resumo" class="secao">
+                <div class="topo-secao">
+                    <div>
+                        <h2>Resumo</h2>
+                        <p>Acompanhe seu desempenho</p>
+                    </div>
+                    <select>
+                        <option>Maio de 2026</option>
+                    </select>
+                </div>
+            
+                <div class="cards-resumo">
+
+                    <div class="card">
+                        <span>Faturamento do mês</span>
+                        <strong class="verde" id="cardFaturamento">
+                        R$ 0,00
+                        </strong>
+                    </div>
+
+                    <div class="card">
+                        <span>Gastos do mês</span>
+                        <strong class="vermelho" id="cardGastos">
+                        R$ 0,00
+                        </strong>
+                    </div>
+
+                    <div class="card">
+                        <span>Lucro líquido</span>
+                        <strong class="verde" id="cardLucro">
+                        R$ 0,00
+                        </strong>
+                    </div>
+
+                    <div class="card">
+                        <span>Dias trabalhados</span>
+                        <strong id="cardDias">
+                        0 dias
+                        </strong>
+                    </div>
+
+                    <div class="card">
+                        <span>Média por dia</span>
+                        <strong id="cardMedia">
+                        R$ 0,00
+                        </strong>
+                    </div>
+
+                </div>
+            </section>
+            
+            <section id="registro" class="secao">              
+                <div class="topo-secao">
+                    <div>
+                        <h2>Registro diário</h2>
+                        <p>Adicione os ganhos e gastos do dia</p>
+                    </div>
+                </div>
+
+                <form class="form-registro">
+                    <div class="campo">
+                        <label>Data</label>
+                        <input type="date" id="data">
+                    </div>
+                    <div class="campo">
+                        <label>Horas trabalhadas</label>
+                        <input type="number" id="horas" placeholder="Ex: 8">
+                    </div>
+                    <div class="campo">
+                        <label>KM rodados</label>
+                        <input type="number" id="km" placeholder="Ex: 100">
+                    </div>
+                    <div class="campo">
+                        <label>Gasolina</label>
+                        <input type="number" id="gasolina" placeholder="Ex: 70">
+                    </div>
+                    <div class="campo">
+                        <label>Outros gastos</label>
+                        <input type="number" id="outros" placeholder="Ex: 50">
+                    </div>
+                    <div class="campo">
+                        <label>Ganho bruto</label>
+                        <input type="number" id="ganho" placeholder="Ex: 500">
+                    </div>
+                    <div class="campo">
+                        <label>Observações</label>
+                        <input type="text" id="obs" placeholder="Movimento bom">
+                    </div>
+                    <button type="button" id="btnSalvar">
+                        Salvar
+                    </button>
+                </form>
+
+                <div class="area-tabela">
+                    <h3>Registros salvos</h3>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Horas</th>
+                            <th>KM</th>
+                            <th>Gasolina</th>
+                            <th>Outros</th>
+                            <th>Ganho</th>
+                            <th>Lucro</th>
+                            <th>Observação</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="tabelaRegistros">
+                        </tbody>
+                    </table>
+                    </div>
+            </section>
+
+            <section id="custos" class="secao">
+                <h2>Custos da moto</h2>
+                <p>Controle óleo, manutenção, pneus e documentos</p>
+            </section>
+            
+            <section id="metas" class="secao">
+                <h2>Metas e reservas</h2>
+                <p>Acompanhe suas metas e reservas</p>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
