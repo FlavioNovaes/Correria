@@ -10,6 +10,15 @@ const cardGastos = document.getElementById("cardGastos");
 const cardLucro = document.getElementById("cardLucro");
 const cardDias = document.getElementById("cardDias");
 const cardMedia = document.getElementById("cardMedia");
+const inputItemCusto = document.getElementById("itemCusto");
+const inputValorCusto = document.getElementById("valorCusto");
+const inputCategoriaCusto = document.getElementById("categoriaCusto");
+const inputFrequenciaCusto = document.getElementById("frequenciaCusto");
+
+const btnSalvarCusto = document.getElementById("btnSalvarCusto");
+const tabelaCustos = document.getElementById("tabelaCustos");
+
+let custosMoto = JSON.parse(localStorage.getItem("custosMoto")) || [];
 
 const btnSalvar = document.getElementById("btnSalvar")
 const tabelaRegistros = document.getElementById("tabelaRegistros")
@@ -18,6 +27,7 @@ let registros = JSON.parse(localStorage.getItem("registros")) || []
 
 mostrarRegistros()
 atualizarResumo()
+mostrarCustosMoto()
 
 btnSalvar.addEventListener("click", () => {
     const registro = {
@@ -39,6 +49,20 @@ btnSalvar.addEventListener("click", () => {
     limparCampos()
 })
 
+btnSalvarCusto.addEventListener("click", () => {
+    const custo = {
+        item: inputItemCusto.value,
+        valor: Number(inputValorCusto.value),
+        categoria: inputCategoriaCusto.value,
+        frequencia: inputFrequenciaCusto.value
+    }
+
+    custosMoto.push(custo)
+    localStorage.setItem("custosMoto", JSON.stringify(custosMoto))
+    mostrarCustosMoto()
+    limparCamposCusto()
+})
+
 function limparCampos() {
     inputData.value = ""
     inputHoras.value = ""
@@ -52,23 +76,43 @@ function limparCampos() {
 function mostrarRegistros() {
     tabelaRegistros.innerHTML = "";
 
-    for (const registro of registros) {
-    const lucro = registro.ganho - registro.gasolina - registro.outros
+    for (let i = 0; i < registros.length; i++) {
+        const registro = registros[i];
 
-    const linha = document.createElement("tr")
+        const lucro = registro.ganho - registro.gasolina - registro.outros;
 
-    linha.innerHTML = `
-        <td>${registro.data}</td>
-        <td>${registro.horas}h</td>
-        <td>${registro.km} km</td>
-        <td>R$ ${registro.gasolina.toFixed(2)}</td>
-        <td>R$ ${registro.outros.toFixed(2)}</td>
-        <td>R$ ${registro.ganho.toFixed(2)}</td>
-        <td>R$ ${lucro.toFixed(2)}</td>
-        <td>${registro.obs}</td>
-    `
+        const linha = document.createElement("tr");
 
-    tabelaRegistros.appendChild(linha)
+        linha.innerHTML = `
+            <td>${registro.data}</td>
+            <td>${registro.horas}h</td>
+            <td>${registro.km} km</td>
+            <td>R$ ${registro.gasolina.toFixed(2)}</td>
+            <td>R$ ${registro.outros.toFixed(2)}</td>
+            <td>R$ ${registro.ganho.toFixed(2)}</td>
+            <td>R$ ${lucro.toFixed(2)}</td>
+            <td>${registro.obs}</td>
+            <td>
+            <button class="btn-excluir" onclick="excluirRegistro(${i})">
+                Excluir
+            </button>
+            </td>
+        `;
+
+        tabelaRegistros.appendChild(linha);
+    }
+}
+
+function excluirRegistro(index) {
+    const confirmar = confirm("Tem certeza que deseja excluir este registro?");
+
+    if (confirmar) {
+        registros.splice(index, 1);
+
+        localStorage.setItem("registros", JSON.stringify(registros));
+
+        mostrarRegistros();
+        atualizarResumo();
     }
 }
 
@@ -103,5 +147,29 @@ function atualizarResumo() {
     cardDias.innerText = `${diasTrabalhados} dias`;
     cardMedia.innerText = `R$ ${mediaDia.toFixed(2)}`;
 
+}
+
+function mostrarCustosMoto() {
+    tabelaCustos.innerHTML = "";
+
+    for (const custo of custosMoto) {
+    const linha = document.createElement("tr");
+
+    linha.innerHTML = `
+        <td>${custo.item}</td>
+        <td>R$ ${custo.valor.toFixed(2)}</td>
+        <td>${custo.categoria}</td>
+        <td>${custo.frequencia}</td>
+    `;
+
+    tabelaCustos.appendChild(linha);
+    }
+}
+
+function limparCamposCusto() {
+    inputItemCusto.value = "";
+    inputValorCusto.value = "";
+    inputCategoriaCusto.value = "Preventiva";
+    inputFrequenciaCusto.value = "";
 }
 
