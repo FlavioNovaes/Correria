@@ -136,9 +136,63 @@
             </section>
 
             <section id="custos" class="secao">
-                <h2>Custos da moto</h2>
-                <p>Controle óleo, manutenção, pneus e documentos</p>
-            </section>
+                <div class="topo-secao">
+                    <div>
+                    <h2>Custos da moto</h2>
+                    <p>Controle óleo, manutenção, pneus e documentos</p>
+                    </div>
+                </div>
+
+                <form class="form-custos">
+                    <div class="campo">
+                        <label>Item</label>
+                        <input type="text" id="itemCusto" placeholder="Ex: Óleo">
+                    </div>
+
+                    <div class="campo">
+                        <label>Valor</label>
+                        <input type="number" id="valorCusto" placeholder="Ex: 47">
+                    </div>
+
+                    <div class="campo">
+                        <label>Categoria</label>
+                        <select id="categoriaCusto">
+                            <option value="Preventiva">Preventiva</option>
+                            <option value="Combustível">Combustível</option>
+                            <option value="Manutenção">Manutenção</option>
+                            <option value="Documento">Documento</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Frequência</label>
+                        <input type="text" id="frequenciaCusto" placeholder="Ex: Semanal">
+                    </div>
+
+                    <button type="button" id="btnSalvarCusto">
+                        Salvar custo
+                    </button>
+                </form>
+
+                <div class="area-tabela">
+                    <h3>Custos cadastrados</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Item</th>
+                            <th>Valor</th>
+                            <th>Categoria</th>
+                            <th>Frequência</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelaCustos">
+                    </tbody>
+                    </table>
+                </div>
+                </section>
             
             <section id="metas" class="secao">
                 <h2>Metas e reservas</h2>
