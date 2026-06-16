@@ -65,7 +65,7 @@ function mostrarRegistros() {
         <td>R$ ${registro.outros.toFixed(2)}</td>
         <td>R$ ${registro.ganho.toFixed(2)}</td>
         <td>R$ ${lucro.toFixed(2)}</td>
-        <td>${registro.observacao}</td>
+        <td>${registro.obs}</td>
     `
 
     tabelaRegistros.appendChild(linha)
