@@ -124,22 +124,22 @@ function atualizarResumo() {
 
     for (const registro of registros) {
 
-    const ganho = Number(registro.ganho);
-    const gasolina = Number(registro.gasolina);
-    const outros = Number(registro.outros);
+        const ganho = Number(registro.ganho);
+        const gasolina = Number(registro.gasolina);
+        const outros = Number(registro.outros);
 
-    faturamento += ganho;
-    gastos += gasolina + outros;
-    lucro += ganho - gasolina - outros;
+        faturamento += ganho;
+        gastos += gasolina + outros;
+        lucro += ganho - gasolina - outros;
 
     }
 
     const diasTrabalhados = registros.length;
 
     const mediaDia =
-    diasTrabalhados > 0
-        ? faturamento / diasTrabalhados
-        : 0;
+        diasTrabalhados > 0
+            ? faturamento / diasTrabalhados
+            : 0;
 
     cardFaturamento.innerText = `R$ ${faturamento.toFixed(2)}`;
     cardGastos.innerText = `R$ ${gastos.toFixed(2)}`;
@@ -153,16 +153,16 @@ function mostrarCustosMoto() {
     tabelaCustos.innerHTML = "";
 
     for (const custo of custosMoto) {
-    const linha = document.createElement("tr");
+        const linha = document.createElement("tr");
 
-    linha.innerHTML = `
-        <td>${custo.item}</td>
-        <td>R$ ${custo.valor.toFixed(2)}</td>
-        <td>${custo.categoria}</td>
-        <td>${custo.frequencia}</td>
-    `;
+        linha.innerHTML = `
+            <td>${custo.item}</td>
+            <td>R$ ${custo.valor.toFixed(2)}</td>
+            <td>${custo.categoria}</td>
+            <td>${custo.frequencia}</td>
+        `;
 
-    tabelaCustos.appendChild(linha);
+        tabelaCustos.appendChild(linha);
     }
 }
 
