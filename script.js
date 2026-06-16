@@ -152,14 +152,21 @@ function atualizarResumo() {
 function mostrarCustosMoto() {
     tabelaCustos.innerHTML = "";
 
-    for (const custo of custosMoto) {
+    for (let i = 0; i < custosMoto.length; i++) {
+        const custo = custosMoto[i];
+
         const linha = document.createElement("tr");
 
         linha.innerHTML = `
-            <td>${custo.item}</td>
-            <td>R$ ${custo.valor.toFixed(2)}</td>
-            <td>${custo.categoria}</td>
-            <td>${custo.frequencia}</td>
+        <td>${custo.item}</td>
+        <td>R$ ${custo.valor.toFixed(2)}</td>
+        <td>${custo.categoria}</td>
+        <td>${custo.frequencia}</td>
+        <td>
+            <button class="btn-excluir" onclick="excluirCusto(${i})">
+            Excluir
+            </button>
+        </td>
         `;
 
         tabelaCustos.appendChild(linha);
@@ -171,5 +178,17 @@ function limparCamposCusto() {
     inputValorCusto.value = "";
     inputCategoriaCusto.value = "Preventiva";
     inputFrequenciaCusto.value = "";
+}
+
+function excluirCusto(index) {
+    const confirmar = confirm("Tem certeza que deseja excluir este custo?");
+
+    if (confirmar) {
+        custosMoto.splice(index, 1);
+
+        localStorage.setItem("custosMoto", JSON.stringify(custosMoto));
+
+        mostrarCustosMoto();
+    }
 }
 
