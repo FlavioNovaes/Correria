@@ -14,11 +14,36 @@ const inputItemCusto = document.getElementById("itemCusto");
 const inputValorCusto = document.getElementById("valorCusto");
 const inputCategoriaCusto = document.getElementById("categoriaCusto");
 const inputFrequenciaCusto = document.getElementById("frequenciaCusto");
+const inputMetaMensal = document.getElementById("metaMensal");
+const inputMetaReservaMoto = document.getElementById("metaReservaMoto");
+const inputValorGuardado = document.getElementById("valorGuardado");
+
+const btnSalvarMetas = document.getElementById("btnSalvarMetas");
+
+const textoMetaMensal = document.getElementById("textoMetaMensal");
+const textoReservaMoto = document.getElementById("textoReservaMoto");
+
+const progressoMetaMensal = document.getElementById("progressoMetaMensal");
+const progressoReservaMoto = document.getElementById("progressoReservaMoto");
+
+const porcentagemMetaMensal = document.getElementById("porcentagemMetaMensal");
+const porcentagemReservaMoto = document.getElementById("porcentagemReservaMoto");
+
+const divisaoGasolina = document.getElementById("divisaoGasolina");
+const divisaoManutencao = document.getElementById("divisaoManutencao");
+const divisaoReserva = document.getElementById("divisaoReserva");
+const divisaoUsoPessoal = document.getElementById("divisaoUsoPessoal");
 
 const btnSalvarCusto = document.getElementById("btnSalvarCusto");
 const tabelaCustos = document.getElementById("tabelaCustos");
 
 let custosMoto = JSON.parse(localStorage.getItem("custosMoto")) || [];
+
+let metas = JSON.parse(localStorage.getItem("metas")) || {
+    metaMensal: 0,
+    metaReservaMoto: 0,
+    valorGuardado: 0
+};
 
 const btnSalvar = document.getElementById("btnSalvar")
 const tabelaRegistros = document.getElementById("tabelaRegistros")
@@ -28,6 +53,7 @@ let registros = JSON.parse(localStorage.getItem("registros")) || []
 mostrarRegistros()
 atualizarResumo()
 mostrarCustosMoto()
+atualizarMetas()
 
 btnSalvar.addEventListener("click", () => {
     const registro = {
@@ -46,6 +72,7 @@ btnSalvar.addEventListener("click", () => {
 
     mostrarRegistros()
     atualizarResumo()
+    atualizarMetas()
     limparCampos()
 })
 
@@ -61,6 +88,17 @@ btnSalvarCusto.addEventListener("click", () => {
     localStorage.setItem("custosMoto", JSON.stringify(custosMoto))
     mostrarCustosMoto()
     limparCamposCusto()
+})
+
+btnSalvarMetas.addEventListener("click", () => {
+
+    metas.metaMensal = Number(inputMetaMensal.value)
+    metas.metaReservaMoto = Number(inputMetaReservaMoto.value)
+    metas.valorGuardado = Number(inputValorGuardado.value)
+
+    localStorage.setItem("metas", JSON.stringify(metas))
+
+    atualizarMetas()
 })
 
 function limparCampos() {
@@ -113,6 +151,7 @@ function excluirRegistro(index) {
 
         mostrarRegistros();
         atualizarResumo();
+        atualizarMetas();
     }
 }
 
@@ -190,5 +229,55 @@ function excluirCusto(index) {
 
         mostrarCustosMoto();
     }
+}
+
+function atualizarMetas() {
+
+    let faturamento = 0;
+
+    for (const registro of registros) {
+        faturamento += registro.ganho;
+    }
+
+    textoMetaMensal.innerText =
+        `R$ ${faturamento.toFixed(2)} / R$ ${metas.metaMensal.toFixed(2)}`;
+
+    textoReservaMoto.innerText =
+        `R$ ${metas.valorGuardado.toFixed(2)} / R$ ${metas.metaReservaMoto.toFixed(2)}`;
+
+    const percentualMeta =
+        metas.metaMensal > 0
+            ? (faturamento / metas.metaMensal) * 100
+            : 0;
+
+    const percentualReserva =
+        metas.metaReservaMoto > 0
+            ? (metas.valorGuardado / metas.metaReservaMoto) * 100
+            : 0;
+
+    progressoMetaMensal.style.width =
+        `${Math.min(percentualMeta, 100)}%`;
+
+    progressoReservaMoto.style.width =
+        `${Math.min(percentualReserva, 100)}%`;
+
+    porcentagemMetaMensal.innerText =
+        `${percentualMeta.toFixed(0)}% concluído`;
+
+    porcentagemReservaMoto.innerText =
+        `${percentualReserva.toFixed(0)}% concluído`;
+
+    divisaoGasolina.innerText =
+        `R$ ${(faturamento * 0.20).toFixed(2)}`;
+
+    divisaoManutencao.innerText =
+        `R$ ${(faturamento * 0.10).toFixed(2)}`;
+
+    divisaoReserva.innerText =
+        `R$ ${(faturamento * 0.10).toFixed(2)}`;
+
+    divisaoUsoPessoal.innerText =
+        `R$ ${(faturamento * 0.60).toFixed(2)}`;
+
 }
 
