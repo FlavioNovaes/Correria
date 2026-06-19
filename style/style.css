@@ -350,6 +350,36 @@ img {
   color: #6b7280;
 }
 
+.toast {
+  position: fixed;
+  right: 30px;
+  top: 30px;
+
+  background: #111827;
+  color: #ffffff;
+
+  padding: 14px 18px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-10px);
+  transition: 0.3s;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 #btnTopo {
     position: fixed;
 

@@ -38,6 +38,8 @@ const divisaoUsoPessoal = document.getElementById("divisaoUsoPessoal");
 const btnSalvarCusto = document.getElementById("btnSalvarCusto");
 const tabelaCustos = document.getElementById("tabelaCustos");
 
+const toast = document.getElementById("toast");
+
 let custosMoto = JSON.parse(localStorage.getItem("custosMoto")) || [];
 
 let metas = JSON.parse(localStorage.getItem("metas")) || {
@@ -69,7 +71,7 @@ btnSalvar.addEventListener("click", () => {
 
     registros.push(registro)
     localStorage.setItem("registros", JSON.stringify(registros))
-    alert("Registro salvo com sucesso!")
+    mostrarToast("Registro salvo com sucesso!")
 
     mostrarRegistros()
     atualizarResumo()
@@ -87,6 +89,7 @@ btnSalvarCusto.addEventListener("click", () => {
 
     custosMoto.push(custo)
     localStorage.setItem("custosMoto", JSON.stringify(custosMoto))
+    mostrarToast("Custo salvo com sucesso!")
     mostrarCustosMoto()
     limparCamposCusto()
 })
@@ -98,6 +101,8 @@ btnSalvarMetas.addEventListener("click", () => {
     metas.valorGuardado = Number(inputValorGuardado.value)
 
     localStorage.setItem("metas", JSON.stringify(metas))
+
+    mostrarToast("Metas salvas com sucesso!")
 
     atualizarMetas()
 })
@@ -280,6 +285,15 @@ function atualizarMetas() {
     divisaoUsoPessoal.innerText =
         `R$ ${(faturamento * 0.60).toFixed(2)}`;
 
+}
+
+function mostrarToast(mensagem) {
+    toast.innerText = mensagem;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
 }
 
 window.addEventListener("scroll", () => {
