@@ -18,6 +18,7 @@ const inputMetaMensal = document.getElementById("metaMensal");
 const inputMetaReservaMoto = document.getElementById("metaReservaMoto");
 const inputValorGuardado = document.getElementById("valorGuardado");
 
+const btnTopo = document.getElementById("btnTopo");
 const btnSalvarMetas = document.getElementById("btnSalvarMetas");
 
 const textoMetaMensal = document.getElementById("textoMetaMensal");
