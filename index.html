@@ -198,8 +198,91 @@
                 </section>
             
             <section id="metas" class="secao">
-                <h2>Metas e reservas</h2>
-                <p>Acompanhe suas metas e reservas</p>
+                <div class="topo-secao">
+                    <div>
+                        <h2>Metas e reservas</h2>
+                        <p>Acompanhe suas metas financeiras</p>
+                    </div>
+                </div>
+
+                <form class="form-metas">
+                    <div class="campo">
+                        <label>Meta mensal</label>
+                        <input type="number" id="metaMensal" placeholder="Ex: 4000">
+                    </div>
+
+                    <div class="campo">
+                        <label>Reserva da moto</label>
+                        <input type="number" id="metaReservaMoto" placeholder="Ex: 2000">
+                    </div>
+
+                    <div class="campo">
+                        <label>Valor já guardado</label>
+                        <input type="number" id="valorGuardado" placeholder="Ex: 500">
+                    </div>
+
+                    <button type="button" id="btnSalvarMetas">
+                        Salvar metas
+                    </button>
+                </form>
+
+                <div class="cards-metas">
+                    <div class="card-meta">
+                        <div class="info-meta">
+                            <span>Meta mensal</span>
+                            <strong id="textoMetaMensal">R$ 0,00 / R$ 0,00</strong>
+                        </div>
+
+                        <div class="barra-progresso">
+                            <div class="progresso" id="progressoMetaMensal"></div>
+                        </div>
+
+                        <p id="porcentagemMetaMensal">0% concluído</p>
+                        </div>
+
+                        <div class="card-meta">
+                        <div class="info-meta">
+                            <span>Reserva da moto</span>
+                            <strong id="textoReservaMoto">R$ 0,00 / R$ 0,00</strong>
+                        </div>
+
+                        <div class="barra-progresso">
+                            <div class="progresso" id="progressoReservaMoto"></div>
+                        </div>
+
+                        <p id="porcentagemReservaMoto">0% concluído</p>
+                    </div>
+                </div>
+
+                <div class="divisao-dinheiro">
+                    <h3>Divisão sugerida do faturamento</h3>
+
+                    <div class="grid-divisao">
+                        <div class="item-divisao">
+                            <span>Gasolina</span>
+                            <strong id="divisaoGasolina">R$ 0,00</strong>
+                            <small>20%</small>
+                        </div>
+
+                        <div class="item-divisao">
+                            <span>Manutenção</span>
+                            <strong id="divisaoManutencao">R$ 0,00</strong>
+                            <small>10%</small>
+                        </div>
+
+                        <div class="item-divisao">
+                            <span>Reserva</span>
+                            <strong id="divisaoReserva">R$ 0,00</strong>
+                            <small>10%</small>
+                        </div>
+
+                        <div class="item-divisao">
+                            <span>Uso pessoal</span>
+                            <strong id="divisaoUsoPessoal">R$ 0,00</strong>
+                            <small>60%</small>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
