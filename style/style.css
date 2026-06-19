@@ -350,6 +350,42 @@ img {
   color: #6b7280;
 }
 
+#btnTopo {
+    position: fixed;
+
+    right: 30px;
+    bottom: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #16a34a;
+    color: white;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+}
+
+#btnTopo:hover {
+    background: #15803d;
+    transform: translateY(-4px);
+}
+
+#btnTopo.show {
+    opacity: 1;
+    visibility: visible;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
